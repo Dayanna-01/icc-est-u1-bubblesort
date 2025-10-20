@@ -1,19 +1,19 @@
 public class SortBubble {
-    
-    // CONSTRUCTOR
+//Static sirve para ejecutarse sin instanciar 
+    //CONSTRUCTOR
     public SortBubble(){
         System.out.println("Se creo mi clase SortBubble");
     }
 
-    public void sortBubble(int[] numeros) {
-        int numeroSize = numeros.length;
+public void sortBubble(int[] numeros){
+    int numerosSize = numeros.length;
         int preguntaCondicion = 0;
         int numeroCambios = 0;
-        for (int i = 0; i < numeroSize; i++) {
-            for (int j = i+1; j < numeroSize; j++) {
-                preguntaCondicion++;
-                //System.out.println("Pregunto " + preguntaCondicion);
-                if (numeros[i] > numeros[j]) { //si se cumple cambio
+        for (int i = 0; i < numeros.length; i++) {
+            for (int j = i + 1; j < numeros.length; j++) {
+                preguntaCondicion ++;
+                System.out.println("Pregunto" + preguntaCondicion);
+                if (numeros[i] > numeros[j]) {
                     int temp = numeros[j];
                     numeros[j] = numeros[i];
                     numeros[i] = temp;
@@ -22,20 +22,46 @@ public class SortBubble {
                 }
             }
         }
-        System.out.println("Preguntas: " + preguntaCondicion);
-        System.out.println("Cambios: " + numeroCambios);
+        System.out.println("Preguntas= " + preguntaCondicion);
+        System.out.println("Cambios= " + numeroCambios);
     }
+
+    public void sortBubbleAvz(int[] numeros){
+        int contCambios = 0;
+        int contPreguntas = 0;
+
+        for (int i = 0; i < numeros.length - 1; i++) {
+            boolean hayCambio = false; //swapped
+            for(int j = 0; j < numeros.length - 1 - i; j++){
+                contPreguntas ++;
+
+                if(numeros[j] >  numeros[j + 1]){
+                    int temp = numeros[j];
+                    numeros[j] = numeros[j + 1];
+                    numeros[j + 1] = temp;
+                    contCambios ++;
+                    hayCambio = true;
+                }
+            }
+            if(!hayCambio){
+                break;
+            }
+        }
+        System.out.println("Preguntas= " + contPreguntas);
+        System.out.println("Cambios= " + contCambios);
+    }
+
+
 
     public void printArray(int[] numeros) {
         System.out.print("[");
         for (int i = 0; i < numeros.length; i++) {
             if (i == numeros.length - 1) {
                 System.out.print(numeros[i]);
-            } else {
-                System.out.print(numeros[i] + ", ");
-            }
+            }else
+                System.out.print(numeros[i] + " , ");
         }
         System.out.println("]");
     }
-
+    
 }
